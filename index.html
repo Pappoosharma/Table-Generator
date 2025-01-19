@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Table Generator</h1>
+  <div class="container">
+  <h2>Enter a number</h2>
+
+  <!-- Input field for user to enter a number -->
+  <input class="inputbox" type="number" id="numberInput">
+
+  <!-- Button to trigger the multiplication table generation -->
+  <button class="btn" onclick="generateTable()">Generate Table</button>
+
+  <!-- Placeholder for the table -->
+  <div class="table" id="tableContainer"></div>
+</div>
+
+
+
+  <script>
+    function generateTable() {
+      // Get the number entered by the user
+      let number = document.getElementById("numberInput").value;
+
+      // Validate if the input is a number and not empty
+      if (isNaN(number) || number === "") {
+        alert("Please enter a number.");
+        return;
+      }
+
+      // Convert input to integer
+      number = parseInt(number);
+
+      // Generate the multiplication table and display it in the tableContainer
+      let table = "<h3>Table for " + number + "</h3>";
+      table += "<table border='5'>";
+      for (let i = 1; i <= 10; i++) {
+        table += "<tr>";
+        table += "<td>" + number + " × " + i + "</td>";
+        table += "<td>" + (number * i) + "</td>";
+        table += "</tr>";
+      }
+      table += "</table>";
+
+      // Display the table inside the tableContainer
+      document.getElementById("tableContainer").innerHTML = table;
+      
+    }
+  </script>
+
+</body>
+
+</html>
