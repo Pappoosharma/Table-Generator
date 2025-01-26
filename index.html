@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table Generator</title>
+    <link
+      rel="shortcut icon"
+      href="Source/table-favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Table Generator</title>
-  <link rel="shortcut icon" href="Source/table-favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <body>
+    <h1>Table Generator</h1>
+    <div class="container">
+      <h2>Enter a number</h2>
 
-<body>
-  <h1>Table Generator</h1>
-  <div class="container">
-  <h2>Enter a number</h2>
+      <!-- Input field for user to enter a number -->
+      <input class="inputbox" type="text" id="numberInput" />
 
-  <!-- Input field for user to enter a number -->
-  <input class="inputbox" type="text" id="numberInput">
+      <!-- Button to trigger the multiplication table generation -->
+      <button class="btn" onclick="generateTable()">Generate</button>
 
-  <!-- Button to trigger the multiplication table generation -->
-  <button class="btn" onclick="generateTable()">Generate</button>
+      <!-- Placeholder for the table -->
+      <div class="table" id="tableContainer"></div>
+    </div>
 
-  <!-- Placeholder for the table -->
-  <div class="table" id="tableContainer"></div>
-</div>
+    <script>
+      // Get the input element
+      const inputElement = document.getElementById("numberInput");
 
+      // Add an event listener for 'keypress' event
+      inputElement.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          document.getElementById("numberInput").click();
+          console.log("Enter key pressed!");
 
+          // Calling the function
+          generateTable();
+        }
+        // generateTable();
+      });
 
-  <script>
-    function generateTable() {
-      // Get the number entered by the user
-      let number = document.getElementById("numberInput").value;
+      function generateTable() {
+        // Get the number entered by the user
+        let number = document.getElementById("numberInput").value;
 
-      // Validate if the input is a number and not empty
-      if (isNaN(number) || number === "") {
-        alert("Please enter a number.");
-        return;
+        // Validate if the input is a number and not empty
+        if (isNaN(number) || number === "") {
+          alert("Please enter a number.");
+          return;
+        }
+
+        // Convert input to integer
+        number = parseInt(number);
+
+        // Generate the multiplication table and display it in the tableContainer
+        let table = "<h2>Table of " + number + "</h2>";
+        table += "<table border='5'>";
+        for (let i = 1; i <= 10; i++) {
+          table += "<tr>";
+          table += "<td>" + number + " × " + i + "</td>";
+          table += "<td>" + number * i + "</td>";
+          table += "</tr>";
+        }
+        table += "</table>";
+
+        // Display the table inside the tableContainer
+        document.getElementById("tableContainer").innerHTML = table;
       }
-
-      // Convert input to integer
-      number = parseInt(number);
-
-      // Generate the multiplication table and display it in the tableContainer
-      let table = "<h2>Table of " + number + "</h2>";
-      table += "<table border='5'>";
-      for (let i = 1; i <= 10; i++) {
-        table += "<tr>";
-        table += "<td>" + number + " × " + i + "</td>";
-        table += "<td>" + (number * i) + "</td>";
-        table += "</tr>";
-      }
-      table += "</table>";
-
-      // Display the table inside the tableContainer
-      document.getElementById("tableContainer").innerHTML = table;
-      
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
